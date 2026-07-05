@@ -405,4 +405,26 @@ finish.innerHTML=`
 
 }
 
-};
+};const welcome=document.getElementById("welcome");
+
+const startSite=document.getElementById("startSite");
+
+startSite.onclick=()=>{
+
+welcome.style.opacity="0";
+
+setTimeout(()=>{
+
+welcome.style.display="none";
+
+},700);
+
+if(music){
+
+music.play().catch(()=>{});
+
+playing=true;
+
+musicBtn.innerHTML="🔊";
+
+}};
