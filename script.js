@@ -142,4 +142,176 @@ moveButton(btn);
 
 });
 
+});function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML=["❤️","💖","💕","💗","🌸"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.bottom="-30px";
+
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},5000);
+
+}
+
+setInterval(createHeart,350);
+
+const oldShow=show;
+
+show=function(next){
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.classList.remove("active");
+
+});
+
+next.classList.add("active");
+
+if(next===finish){
+
+for(let i=0;i<60;i++){
+
+setTimeout(createHeart,i*80);
+
+}
+
+}
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};// ---------------- LANGUAGE ----------------
+
+const texts = {
+
+ru: {
+
+title: "Дариға,<br><br>ты пойдёшь со мной<br>на свидание?",
+
+yes: "Да! 💖",
+
+no: "Нет(",
+
+hint: '(кнопку "Нет" лучше не нажимать 😼)',
+
+q2: "Как поедем?",
+
+a21: "Закажу Комфорт+",
+
+a22: "Сам заеду за тобой 🚗",
+
+a23: "Пойдём пешком 🤝",
+
+q3: "Что будем кушать?",
+
+q4: "Кто платит?",
+
+pay1: "Ну я...",
+
+pay2: "Конечно, ты ❤️",
+
+q5: "Насколько сильно ждёшь нашу встречу?",
+
+finish: "Спасибо, Дариға 🥹",
+
+meet: "Тогда встречаемся в Демалыс күні",
+
+love: "С любовью,<br>Бекзат ❤️"
+
+},
+
+kz: {
+
+title: "Дариға,<br><br>менімен<br>кездесуге шығасың ба?",
+
+yes: "Иә ❤️",
+
+no: "Жоқ",
+
+hint: "(«Жоқ» батырмасын ұстай алмайсың 😼)",
+
+q2: "Қалай барамыз?",
+
+a21: "Такси шақырамын",
+
+a22: "Өзім алып кетемін 🚗",
+
+a23: "Жаяу барайық",
+
+q3: "Не жейміз?",
+
+q4: "Кім төлейді?",
+
+pay1: "Мен...",
+
+pay2: "Сен төлейсің ❤️",
+
+q5: "Кездесуді қаншалықты күтесің?",
+
+finish: "Рақмет, Дариға 🥹",
+
+meet: "Онда Демалыс күні кездесеміз",
+
+love: "Ізгі тілекпен,<br>Бекзат ❤️"
+
+}
+
+};
+
+const langBtns=document.querySelectorAll(".lang");
+
+langBtns.forEach((btn,index)=>{
+
+btn.onclick=()=>{
+
+langBtns.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+const t=index===0?texts.ru:texts.kz;
+
+document.querySelector("#page1 h1").innerHTML=t.title;
+yesBtn.innerHTML=t.yes;
+noBtn.innerHTML=t.no;
+document.querySelector(".hint").innerHTML=t.hint;
+
+document.querySelector("#page2 h1").innerHTML=t.q2;
+
+const opts=document.querySelectorAll("#page2 .option");
+opts[0].innerHTML=t.a21;
+opts[1].innerHTML=t.a22;
+opts[2].innerHTML=t.a23;
+
+document.querySelector("#page3 h1").innerHTML=t.q3;
+
+document.querySelector("#page4 h1").innerHTML=t.q4;
+mePay.innerHTML=t.pay1;
+document.querySelectorAll(".correct")[1].innerHTML=t.pay2;
+
+document.querySelector("#page5 h1").innerHTML=t.q5;
+
+document.querySelector("#finish h2").innerHTML=t.finish;
+document.querySelector("#finish p").innerHTML=t.meet;
+document.querySelector("#finish h3").innerHTML=t.love;
+
+};
+
 });
