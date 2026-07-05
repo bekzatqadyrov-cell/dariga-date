@@ -6,7 +6,6 @@
 <title>For Dariga ❤️</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -15,78 +14,121 @@ font-family:Arial,sans-serif;
 }
 
 body{
-height:100vh;
+background:linear-gradient(135deg,#ffd6ea,#f7d4ff);
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffd6e8,#f7d8ff);
+height:100vh;
 overflow:hidden;
 }
 
 .card{
-width:360px;
+width:350px;
 background:white;
-padding:35px;
 border-radius:30px;
+padding:30px;
 text-align:center;
-box-shadow:0 15px 40px rgba(255,100,180,.25);
+box-shadow:0 10px 30px rgba(0,0,0,.15);
 position:relative;
 }
 
 .lang{
 position:absolute;
-right:15px;
 top:15px;
+right:15px;
+display:flex;
+gap:5px;
 }
 
 .lang button{
 border:none;
 padding:8px 14px;
-margin-left:5px;
 border-radius:20px;
 cursor:pointer;
+background:#eee;
+font-weight:bold;
 }
 
-h1{
-margin-top:30px;
-color:#ff5d97;
-font-size:34px;
-}
-
-p{
-margin:20px 0;
-font-size:23px;
-color:#555;
-}
-
-.mainBtn{
-width:100%;
-padding:15px;
-margin-top:15px;
-border:none;
-border-radius:35px;
-font-size:20px;
-cursor:pointer;
-}
-
-#yes{
-background:linear-gradient(90deg,#ff4f8a,#b86cff);
+.lang button.active{
+background:linear-gradient(90deg,#ff5d8f,#9f6cff);
 color:white;
 }
 
-#no{
-background:white;
-border:2px solid #eee;
-position:relative;
+.cat{
+font-size:80px;
+animation:bounce 2s infinite;
 }
 
-#result{
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+
+h2{
+margin-top:15px;
+font-size:28px;
+color:#444;
+}
+
+p{
+margin-top:12px;
+color:#666;
+font-size:18px;
+}
+
+.btn{
+margin-top:25px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.yes{
+background:linear-gradient(90deg,#ff5d8f,#9f6cff);
+color:white;
+}
+
+.no{
+background:white;
+margin-top:12px;
+}
+
+.page{
 display:none;
-font-size:26px;
-color:#ff4f8a;
+}
+
+.page.active{
+display:block;
+}
+
+.option{
+background:white;
+padding:18px;
+border-radius:20px;
+margin-top:15px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.option:hover{
+transform:scale(1.03);
+}
+
+input[type=range]{
+width:100%;
 margin-top:25px;
 }
 
+.finish{
+font-size:35px;
+color:#ff4b8a;
+margin-top:20px;
+}
 </style>
 </head>
 
@@ -95,91 +137,205 @@ margin-top:25px;
 <div class="card">
 
 <div class="lang">
-<button onclick="kk()">ҚАЗ</button>
-<button onclick="ru()">РУС</button>
+<button class="active" onclick="lang('kz')">ҚАЗ</button>
+<button onclick="lang('ru')">РУС</button>
 </div>
 
-<h1>Дариға ❤️</h1>
+<div id="page1" class="page active">
 
-<p id="text">
+<div class="cat">🐱</div>
+
+<h2 id="name">
+Дариға ❤️
+</h2>
+
+<p id="question">
 Менімен кездесуге шығасың ба?
 </p>
 
-<button id="yes" class="mainBtn" onclick="yesClick()">
-Иә ❤️
+<button class="btn yes" onclick="next(2)">
+Иә 💖
 </button>
 
-<button id="no" class="mainBtn">
-Жоқ 🙈
+<button class="btn no" id="noBtn">
+Жоқ
 </button>
 
-<div id="result"></div>
+</div>
+
+<div id="page2" class="page">
+
+<div class="cat">😺</div>
+
+<h2 id="foodTitle">
+Не жегің келеді?
+</h2>
+
+<div class="option" onclick="next(3)">
+🍣 Суши
+</div>
+
+<div class="option" onclick="next(3)">
+🍕 Пицца
+</div>
+
+<div class="option" onclick="next(3)">
+🥩 Ет
+</div>
+
+<div class="option" onclick="next(3)">
+🍰 Десерт
+</div>
+
+</div><div id="page3" class="page">
+
+<div class="cat">🚗</div>
+
+<h2 id="rideTitle">
+Қалай барамыз?
+</h2>
+
+<div class="option" onclick="next(4)">
+🚕 Таксимен
+</div>
+
+<div class="option" onclick="next(4)">
+🚘 Өзім алып кетемін
+</div>
+
+<div class="option" onclick="next(4)">
+🚶 Қол ұстасып жаяу
+</div>
+
+</div>
+
+<div id="page4" class="page">
+
+<div class="cat">💳</div>
+
+<h2 id="payTitle">
+Кім төлейді?
+</h2>
+
+<div class="option" onclick="next(5)">
+🙋‍♂️ Мен төлеймін
+</div>
+
+<div class="option" onclick="next(5)">
+🤝 Екеуміз бөлісеміз
+</div>
+
+<div class="option" onclick="next(5)">
+😊 Өзің шеш
+</div>
+
+</div>
+
+<div id="page5" class="page">
+
+<div class="cat">❤️</div>
+
+<h2 id="waitTitle">
+Кездесуді қаншалықты күтесің?
+</h2>
+
+<input
+type="range"
+min="1"
+max="100"
+value="100"
+>
+
+<button class="btn yes" onclick="next(6)">
+Жалғастыру 💖
+</button>
+
+</div>
+
+<div id="page6" class="page">
+
+<div class="cat">🎉</div>
+
+<div class="finish">
+❤️ Күтемін! ❤️
+</div>
+
+<p id="finishText">
+Кездескенше ❤️<br><br>
+— Бекзат
+</p>
+
+</div>
 
 </div>
 
 <script>
 
-let lang="kk";
+function next(id){
 
-function kk(){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
 
-lang="kk";
-
-document.getElementById("text").innerHTML="Менімен кездесуге шығасың ба?";
-
-document.getElementById("yes").innerHTML="Иә ❤️";
-
-document.getElementById("no").innerHTML="Жоқ 🙈";
+document.getElementById("page"+id).classList.add("active");
 
 }
 
-function ru(){
+const noBtn=document.getElementById("noBtn");
 
-lang="ru";
+noBtn.addEventListener("mouseover",()=>{
 
-document.getElementById("text").innerHTML="Ты пойдёшь со мной на свидание?";
+const x=Math.random()*250-125;
 
-document.getElementById("yes").innerHTML="Да ❤️";
+const y=Math.random()*250-125;
 
-document.getElementById("no").innerHTML="Нет 🙈";
-
-}
-
-function yesClick(){
-
-document.getElementById("text").style.display="none";
-document.getElementById("yes").style.display="none";
-document.getElementById("no").style.display="none";
-
-if(lang=="kk"){
-
-document.getElementById("result").innerHTML=
-"❤️ Күтемін!<br><br>— Бекзат";
-
-}else{
-
-document.getElementById("result").innerHTML=
-"❤️ Буду ждать!<br><br>— Бекзат";
-
-}
-
-document.getElementById("result").style.display="block";
-
-}
-
-const no=document.getElementById("no");
-
-no.addEventListener("mouseover",()=>{
-
-let x=Math.random()*220-110;
-
-let y=Math.random()*220-110;
-
-no.style.transform=`translate(${x}px,${y}px)`;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
 
 });
 
-</script>
+function lang(type){
+
+const buttons=document.querySelectorAll(".lang button");
+
+buttons.forEach(b=>b.classList.remove("active"));
+
+if(type=="kz"){
+
+buttons[0].classList.add("active");
+
+document.getElementById("question").innerHTML="Менімен кездесуге шығасың ба?";
+
+document.getElementById("foodTitle").innerHTML="Не жегің келеді?";
+
+document.getElementById("rideTitle").innerHTML="Қалай барамыз?";
+
+document.getElementById("payTitle").innerHTML="Кім төлейді?";
+
+document.getElementById("waitTitle").innerHTML="Кездесуді қаншалықты күтесің?";
+
+document.getElementById("finishText").innerHTML=
+"Кездескенше ❤️<br><br>— Бекзат";
+
+}else{
+
+buttons[1].classList.add("active");
+
+document.getElementById("question").innerHTML="Ты пойдёшь со мной на свидание?";
+
+document.getElementById("foodTitle").innerHTML="Что будем кушать?";
+
+document.getElementById("rideTitle").innerHTML="Как поедем?";
+
+document.getElementById("payTitle").innerHTML="Кто платит?";
+
+document.getElementById("waitTitle").innerHTML="Насколько ждёшь встречу?";
+
+document.getElementById("finishText").innerHTML=
+"До встречи ❤️<br><br>— Бекзат";
+
+}
+
+}</script>
 
 </body>
 </html>
