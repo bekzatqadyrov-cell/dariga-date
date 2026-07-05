@@ -427,4 +427,30 @@ playing=true;
 
 musicBtn.innerHTML="🔊";
 
-}};
+}};document.querySelectorAll("button").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+btn.animate([
+
+{transform:"scale(1)"},
+
+{transform:"scale(.92)"},
+
+{transform:"scale(1)"}
+
+],{
+
+duration:180
+
+});
+
+});
+
+});
+
+document.body.addEventListener("click",()=>{
+
+createHeart();
+
+});
