@@ -26,7 +26,98 @@ card.classList.remove("active");
 next.classList.add("active");
 
 window.scrollTo(0,0);
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
 
+let playing=false;
+
+musicBtn.onclick=()=>{
+
+if(!playing){
+
+music.play();
+
+musicBtn.innerHTML="🔊";
+
+playing=true;
+
+}else{
+
+music.pause();
+
+musicBtn.innerHTML="🎵";
+
+playing=false;
+
+}
+
+};
+
+const oldFinishShow=show;
+
+show=function(next){
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.classList.remove("active");
+
+});
+
+next.classList.add("active");
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+if(next===finish){
+
+for(let i=0;i<80;i++){
+
+setTimeout(createHeart,i*70);
+
+}
+
+finish.innerHTML=`
+
+<div class="finalHeart">❤️</div>
+
+<h1>Дариға</h1>
+
+<h2>Кездесеміз ❤️</h2>
+
+<p style="font-size:22px;margin-top:20px;">
+📅 Демалыс күні
+</p>
+
+<p style="font-size:20px;margin-top:10px;">
+🚗 Өзім алып кетемін
+</p>
+
+<p style="font-size:20px;margin-top:10px;">
+🍽️ Кез келген тамақты таңдай аласың
+</p>
+
+<p style="font-size:20px;margin-top:10px;">
+💳 Әрине, мен төлеймін 😄
+</p>
+
+<h2 style="margin-top:30px;">
+Сені күтемін ❤️
+</h2>
+
+<h3 style="margin-top:20px;">
+Бекзат
+</h3>
+
+`;
+
+}
+
+};
 }
 
 yesBtn.onclick=()=>{
