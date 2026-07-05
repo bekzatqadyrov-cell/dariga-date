@@ -6,6 +6,190 @@
 <title>For Dariga ❤️</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e8,#f7d8ff);
+overflow:hidden;
+}
+
+.card{
+width:360px;
+background:white;
+padding:35px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 15px 40px rgba(255,100,180,.25);
+position:relative;
+}
+
+.lang{
+position:absolute;
+right:15px;
+top:15px;
+}
+
+.lang button{
+border:none;
+padding:8px 14px;
+margin-left:5px;
+border-radius:20px;
+cursor:pointer;
+}
+
+h1{
+margin-top:30px;
+color:#ff5d97;
+font-size:34px;
+}
+
+p{
+margin:20px 0;
+font-size:23px;
+color:#555;
+}
+
+.mainBtn{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:35px;
+font-size:20px;
+cursor:pointer;
+}
+
+#yes{
+background:linear-gradient(90deg,#ff4f8a,#b86cff);
+color:white;
+}
+
+#no{
+background:white;
+border:2px solid #eee;
+position:relative;
+}
+
+#result{
+display:none;
+font-size:26px;
+color:#ff4f8a;
+margin-top:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="lang">
+<button onclick="kk()">ҚАЗ</button>
+<button onclick="ru()">РУС</button>
+</div>
+
+<h1>Дариға ❤️</h1>
+
+<p id="text">
+Менімен кездесуге шығасың ба?
+</p>
+
+<button id="yes" class="mainBtn" onclick="yesClick()">
+Иә ❤️
+</button>
+
+<button id="no" class="mainBtn">
+Жоқ 🙈
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+let lang="kk";
+
+function kk(){
+
+lang="kk";
+
+document.getElementById("text").innerHTML="Менімен кездесуге шығасың ба?";
+
+document.getElementById("yes").innerHTML="Иә ❤️";
+
+document.getElementById("no").innerHTML="Жоқ 🙈";
+
+}
+
+function ru(){
+
+lang="ru";
+
+document.getElementById("text").innerHTML="Ты пойдёшь со мной на свидание?";
+
+document.getElementById("yes").innerHTML="Да ❤️";
+
+document.getElementById("no").innerHTML="Нет 🙈";
+
+}
+
+function yesClick(){
+
+document.getElementById("text").style.display="none";
+document.getElementById("yes").style.display="none";
+document.getElementById("no").style.display="none";
+
+if(lang=="kk"){
+
+document.getElementById("result").innerHTML=
+"❤️ Күтемін!<br><br>— Бекзат";
+
+}else{
+
+document.getElementById("result").innerHTML=
+"❤️ Буду ждать!<br><br>— Бекзат";
+
+}
+
+document.getElementById("result").style.display="block";
+
+}
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+
+let x=Math.random()*220-110;
+
+let y=Math.random()*220-110;
+
+no.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dariga ❤️</title>
+
+<style>
 *{
 margin:0;
 padding:0;
@@ -195,18 +379,16 @@ margin-top:20px;
 Қалай барамыз?
 </h2>
 
-<div class="option" onclick="next(4)">
+<div class="option wrongBtn">
 🚕 Таксимен
 </div>
 
-<div class="option" onclick="next(4)">
+<div class="option wrongBtn">
 🚘 Өзім алып кетемін
 </div>
 
 <div class="option" onclick="next(4)">
-🚶 Қол ұстасып жаяу
-</div>
-
+🚶 Бірге қол ұстасып ❤️
 </div>
 
 <div id="page4" class="page">
@@ -217,16 +399,16 @@ margin-top:20px;
 Кім төлейді?
 </h2>
 
-<div class="option" onclick="next(5)">
-🙋‍♂️ Мен төлеймін
+<div class="option" onclick="next(6)">
+💳 Сен төлейсің ❤️
 </div>
 
-<div class="option" onclick="next(5)">
+<div class="option wrongBtn">
 🤝 Екеуміз бөлісеміз
 </div>
 
-<div class="option" onclick="next(5)">
-😊 Өзің шеш
+<div class="option wrongBtn">
+😊 Өзің төлейсің
 </div>
 
 </div>
@@ -335,7 +517,25 @@ document.getElementById("finishText").innerHTML=
 
 }
 
-}</script>
+}document.querySelectorAll(".wrongBtn").forEach(btn=>{
+
+btn.addEventListener("mouseover",()=>{
+
+const x=Math.random()*250-125;
+
+const y=Math.random()*250-125;
+
+btn.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+btn.addEventListener("click",()=>{
+
+alert("Жоқ 😄 Дұрыс жауапты таңда ❤️");
+
+});
+
+});</script>
 
 </body>
 </html>
